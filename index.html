@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    
+
+
+        <aside class="bg-blue-100 border-r border-gray-200 p-6 h-screen w-[300px] flex flex-col">
+        
+        <h2 class="text-2xl font-bold text-blue-600 mb-6">Staff Members</h2>
+        
+        <!-- worker card -->
+        <!-- <div class="flex items-center border border-gray-200 rounded-xl mb-4 p-4 bg-white w-[250px]">
+          <div class="w-12 h-12 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 font-semibold">
+                  <img src="" alt="">  
+         </div>
+          <div class="ml-3">
+            <p class="font-semibold text-gray-800">Brent Sweeney</p>
+            <p class="text-gray-500 text-sm">IT</p>
+          </div>
+          <button class="ml-5 text-yellow-500 text-sm">Edit</button>
+        </div> -->
+
+        <div id="staf-cards" class="flex flex-col gap-4 w-[250px]">
+
+        </div>
+        
+        <button id="add-emp" class="w-full bg-blue-600 text-white py-3 rounded-xl mt-auto">
+          Add New Worker
+        </button>
+        
+        </aside>
+
+    <div class="image">
+       <div id="div-1" class="rooms">
+        <h3 class="text-gray-500 font-bold">Conference Room</h3>
+        <button type="button" class="plus-btn">+</button>
+       </div>
+        <div id="div-2"></div>
+        <div id="div-3" class="rooms">
+            <h3 class="text-gray-500 font-bold">Servers Room</h3>
+        <button type="button" class="plus-btn">+</button>
+        </div>
+       <div id="div-4" class="rooms">
+        <h3 class="text-gray-500 font-bold">Security Room</h3>
+        <button type="button" class="plus-btn">+</button>
+       </div>
+       <div id="div-5" class="rooms">
+        <h3 class="text-gray-500 font-bold">Reception</h3>
+        <button type="button" class="plus-btn">+</button>
+       </div>
+       <div id="div-6" class="rooms">
+        <h3 class="text-gray-500 font-bold">Staff Room</h3>
+        <button type="button" class="plus-btn">+</button>
+       </div>
+       <div id="div-7" class="rooms">
+            <h3 class="text-gray-500 font-bold">Vault</h3>
+        <button type="button" class="plus-btn">+</button>
+       </div>
+       <div id="div-8"></div>
+    </div>
+
+        <section id="modal" class="fixed inset-0 bg-black bg-opacity-40  flex items-center justify-center">
+
+            <!-- Modal Box -->
+            <div class="bg-white p-6 rounded-xl w-[450px] max-h-[70vh] overflow-y-auto">
+                <div class="flex justify-between border-b">
+                    <h2 class="text-2xl font-bold text-blue-600 mb-4">Add Worker</h2>
+                    <button>
+                        <i class="fa-solid fa-x closeModal"></i>
+                    </button>
+                </div>
+
+                <form id="addWorkerForm" class="space-y-4">
+
+                    <div>
+                        <label>Name :</label>
+                        <input type="text" id="name">
+                        <span class="form-error text-xs h-5px"></span>
+                    </div>
+                    <div>
+                        <label>Role</label>
+                        <select id="role" class="w-full border p-3 rounded-lg" >
+                            <option>Receptionist</option>
+                            <option>IT Guy</option>
+                            <option>Security</option>
+                            <option>Cleaning</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                            <label for="photo"class="w-28 h-28 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer overflow-hidden">
+                                <span class="text-gray-500 text-sm">Add Picture</span>
+                            </label>
+                      <input type="file" id="photo" class="hidden">
+                    </div>
+
+                    
+                        <!-- experience form dynamique  -->
+                    <label for="dynamique-form">Experience : </label>
+                    <div id="dynamique-form" class="bg-gray-100 w-full max-h-full border-black rounded-xl p-3">
+                    <div>
+                        <label>Company :</label>
+                        <input type="text" id="company" >
+                        <span class="form-error-ex text-xs h-5px"></span>
+                    </div>
+                    <div>
+                        <label>Role :</label>
+                        <input type="text" id="role" >
+                        <span class="form-error-ex text-xs h-5px"></span>
+                    </div>
+                    <div>
+                        <label>From :</label>
+                        <input type="date" id="date-start" >
+                        
+                    </div>
+                    <div>
+                        <label>To :</label>
+                        <input type="date" id="date-end" >
+                        
+                    </div>
+                    <div id="new-dynamique-form">
+
+                    </div>
+
+                    <button id="add-ex" type="button" class="bg-yellow-400 text-white mt-3 px-4 py-2 rounded-xl ">
+                            Add experience
+                    </button>
+
+                    </div>
+
+                    <div>
+                        <label>Email</label>
+                        <input type="email" id="email">
+                        <span class="form-error text-xs h-5px"></span>
+                    </div>
+
+                     <div>
+                        <label>Phone</label>
+                        <input type="tel" id="phone" placeholder="+212">
+                        <span class="form-error text-xs h-5px"></span>
+                    </div>
+
+                    
+                    
+
+                    <!-- Buttons -->
+                    <div class="flex justify-between mt-6">
+                        <button type="button" class="closeModal bg-gray-300 px-4 py-2 rounded-xl hover:bg-gray-400">
+                            Cancel
+                        </button>
+
+                        <button id="add" type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700">
+                            Add Worker
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+<script src="/assets/scripts/script.js"></script>
+</body>
+</html>

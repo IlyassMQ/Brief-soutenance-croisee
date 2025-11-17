@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    height: 100vh;
+}
+
+label{
+    opacity: 0.5;
+}
+
+input{
+    width: 100%;
+    height: 40px;
+  border: 1px solid #d1d5db; 
+  padding: 12px;          
+  border-radius: 8px;     
+  margin: 0 5px;
+}
+
+.image{ 
+    flex: 1;
+    height: 100vh;
+    display: grid;
+    background-image: url("/assets/images/plan-69159a65c5684763515973.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    grid-template-areas:"div1 div1 div2 div3 div4"
+                        "div5 div5 div2 div8 div8"
+                        "div5 div5 div2 div6 div7";
+}
+#div-1{grid-area: div1;}
+#div-2{grid-area: div2;}
+#div-3{grid-area: div3;}
+#div-4{grid-area: div4;}
+#div-5{grid-area: div5;}
+#div-6{grid-area: div6;}
+#div-7{grid-area: div7;}
+#div-8{grid-area: div8;}
+.rooms{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.plus-btn{
+    background-color: blue;
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 0.75rem;
+    text-align: center;
+}
