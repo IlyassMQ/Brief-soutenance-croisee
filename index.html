@@ -167,17 +167,24 @@
             </div>
         </section>
 
-    <div id="viewModal" class="fixed hidden inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+    <div id="viewModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
     <div class="bg-white p-6 rounded-xl w-[450px] max-h-[70vh]">
         <div class="flex justify-between items-center">
-            <h2 class="text-xl font-bold mb-4">Employee Details</h2>
+            <h2 class="text-xl font-bold mb-4 text-blue-600">Profile</h2>
             <button id="closeView"> <i class="fa-solid fa-x closeModal"></i> </button>
         </div>
 
-        <p><strong>Name:</strong> <span id="view-name"></span></p>
-        <p><strong>Email:</strong> <span id="view-email"></span></p>
-        <p><strong>Phone:</strong> <span id="view-phone"></span></p>
-        <p><strong>Role:</strong> <span id="view-role"></span></p>
+        <div class="flex gap-10">
+            <div class="image-employer border h-12 w-12 rounded-full bg-black"> </div>
+            <div class="flex flex-col">
+                <p><strong>Name:</strong> <span id="view-name"></span></p>
+                <p><strong>Role:</strong> <span id="view-role" class="text-blue-600"></span></p>
+            </div>
+        </div>
+        <div class="p-2 bg-gray-100 rounded mt-10">
+            <p><strong>Email:</strong> <span id="view-email"></span></p>
+            <p><strong>Phone:</strong> <span id="view-phone"></span></p>
+        </div>
 
         <h3 class="font-semibold mt-4">Experiences:</h3>
         <div id="view-experiences" class="space-y-2"></div>
