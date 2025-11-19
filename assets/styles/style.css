@@ -25,7 +25,7 @@ input{
     flex: 1;
     height: 100vh;
     display: grid;
-    background-image: url("/assets/images/plan-69159a65c5684763515973.jpg");
+    background-image: url("../images/plan-69159a65c5684763515973.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     grid-template-areas:"div1 div1 div2 div3 div4"
