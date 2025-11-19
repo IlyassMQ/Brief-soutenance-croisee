@@ -68,7 +68,7 @@
        <div id="div-8"></div>
     </div>
 
-        <section id="modal" class="fixed inset-0 bg-black bg-opacity-40  flex items-center justify-center">
+        <section id="modal" class="fixed hidden inset-0 bg-black bg-opacity-40  flex items-center justify-center">
 
             <!-- Modal Box -->
             <div class="bg-white p-6 rounded-xl w-[450px] max-h-[70vh] overflow-y-auto">
@@ -110,22 +110,22 @@
                     <div id="dynamique-form" class="bg-gray-100 w-full max-h-full border-black rounded-xl p-3">
                     <div>
                         <label>Company :</label>
-                        <input type="text" id="company" >
+                        <input type="text" class="company" >
                         <span class="form-error-ex text-xs h-5px"></span>
                     </div>
                     <div>
                         <label>Role :</label>
-                        <input type="text" id="role" >
+                        <input type="text" class="role" >
                         <span class="form-error-ex text-xs h-5px"></span>
                     </div>
                     <div>
                         <label>From :</label>
-                        <input type="date" id="date-start" >
+                        <input type="date" class="date-start" >
                         
                     </div>
                     <div>
                         <label>To :</label>
-                        <input type="date" id="date-end" >
+                        <input type="date" class="date-end" >
                         
                     </div>
                     <div id="new-dynamique-form">
@@ -166,6 +166,27 @@
                 </form>
             </div>
         </section>
+
+    <div id="viewModal" class="fixed hidden inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+    <div class="bg-white p-6 rounded-xl w-[450px] max-h-[70vh]">
+        <div class="flex justify-between items-center">
+            <h2 class="text-xl font-bold mb-4">Employee Details</h2>
+            <button id="closeView"> <i class="fa-solid fa-x closeModal"></i> </button>
+        </div>
+
+        <p><strong>Name:</strong> <span id="view-name"></span></p>
+        <p><strong>Email:</strong> <span id="view-email"></span></p>
+        <p><strong>Phone:</strong> <span id="view-phone"></span></p>
+        <p><strong>Role:</strong> <span id="view-role"></span></p>
+
+        <h3 class="font-semibold mt-4">Experiences:</h3>
+        <div id="view-experiences" class="space-y-2"></div>
+
+    </div>
+</div>
+
+
+
 <script src="/assets/scripts/script.js"></script>
 </body>
 </html>
