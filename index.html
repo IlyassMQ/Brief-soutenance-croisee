@@ -15,7 +15,7 @@
 
         <aside class="bg-blue-100 border-r border-gray-200 p-6 h-screen w-[300px] flex flex-col">
         
-        <h2 class="text-2xl font-bold text-blue-600 mb-6">Staff Members</h2>
+        <h2 class="text-2xl font-bold text-blue-600">Staff Members</h2>
         
         <!-- worker card -->
         <!-- <div class="flex items-center border border-gray-200 rounded-xl mb-4 p-4 bg-white w-[250px]">
@@ -29,7 +29,7 @@
           <button class="ml-5 text-yellow-500 text-sm">Edit</button>
         </div> -->
 
-        <div id="staf-cards" class="flex flex-col gap-4 w-[250px]">
+        <div id="staf-cards" class="flex flex-col gap-4 w-[250px] cursor-pointer">
 
         </div>
         
@@ -40,30 +40,30 @@
         </aside>
 
     <div class="image">
-       <div id="div-1" class="rooms">
+       <div id="div-1" class="rooms" data-room="Conference Room">
         <h3 class="text-gray-500 font-bold">Conference Room</h3>
-        <button type="button" class="plus-btn">+</button>
+        <button type="button" class="plus-btn" data-room="Conference Room">+</button>
        </div>
         <div id="div-2"></div>
-        <div id="div-3" class="rooms">
+        <div id="div-3" class="rooms" data-room="Servers Room">
             <h3 class="text-gray-500 font-bold">Servers Room</h3>
-        <button type="button" class="plus-btn">+</button>
+        <button type="button" class="plus-btn" data-room="Servers Room">+</button>
         </div>
-       <div id="div-4" class="rooms">
+       <div id="div-4" class="rooms" data-room="Security Room">
         <h3 class="text-gray-500 font-bold">Security Room</h3>
-        <button type="button" class="plus-btn">+</button>
+        <button type="button" class="plus-btn" data-room="Security Room">+</button>
        </div>
-       <div id="div-5" class="rooms">
+       <div id="div-5" class="rooms" data-room="Reception">
         <h3 class="text-gray-500 font-bold">Reception</h3>
-        <button type="button" class="plus-btn">+</button>
+        <button type="button" class="plus-btn" data-room="Reception">+</button>
        </div>
-       <div id="div-6" class="rooms">
+       <div id="div-6" class="rooms" data-room="Staff Room">
         <h3 class="text-gray-500 font-bold">Staff Room</h3>
-        <button type="button" class="plus-btn">+</button>
+        <button type="button" class="plus-btn" data-room="Staff Room">+</button>
        </div>
-       <div id="div-7" class="rooms">
+       <div id="div-7" class="rooms" data-room="Vault">
             <h3 class="text-gray-500 font-bold">Vault</h3>
-        <button type="button" class="plus-btn">+</button>
+        <button type="button" class="plus-btn" data-room="Vault">+</button>
        </div>
        <div id="div-8"></div>
     </div>
@@ -89,6 +89,7 @@
                     <div>
                         <label>Role</label>
                         <select id="role" class="w-full border p-3 rounded-lg" >
+                            <option>Manager</option>
                             <option>Receptionist</option>
                             <option>IT Guy</option>
                             <option>Security</option>
@@ -98,11 +99,12 @@
                     </div>
 
                     <div class="flex flex-col items-center">
-                            <label for="photo"class="w-28 h-28 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer overflow-hidden">
-                                <span class="text-gray-500 text-sm">Add Picture</span>
-                            </label>
-                      <input type="file" id="photo" class="hidden">
+                        <input type="url" id="photo-url" placeholder="Enter image URL" class="mt-2 border p-2 rounded w-full">
+                        <label for="photo" class="w-28 h-28 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden" id="photo-preview">
+                        <span class="text-gray-500 text-sm ">Picture</span>
+                        </label>
                     </div>
+
 
                     
                         <!-- experience form dynamique  -->
@@ -111,21 +113,23 @@
                     <div>
                         <label>Company :</label>
                         <input type="text" class="company" >
-                        <span class="form-error-ex text-xs h-5px"></span>
+                        <span class="text-xs h-5px"></span>
                     </div>
                     <div>
                         <label>Role :</label>
                         <input type="text" class="role" >
-                        <span class="form-error-ex text-xs h-5px"></span>
+                        <span class="text-xs h-5px"></span>
                     </div>
                     <div>
                         <label>From :</label>
-                        <input type="date" class="date-start" >
+                        <input type="date" class="date-start">
+                        <span class="form-error-ex text-xs"></span>
                         
                     </div>
                     <div>
                         <label>To :</label>
-                        <input type="date" class="date-end" >
+                        <input type="date" class="date-end">
+                        <span class="form-error-ex text-xs"></span>
                         
                     </div>
                     <div id="new-dynamique-form">
@@ -167,7 +171,7 @@
             </div>
         </section>
 
-    <div id="viewModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+<div id="viewModal" class="fixed inset-0 bg-black hidden bg-opacity-40 flex items-center justify-center">
     <div class="bg-white p-6 rounded-xl w-[450px] max-h-[70vh]">
         <div class="flex justify-between items-center">
             <h2 class="text-xl font-bold mb-4 text-blue-600">Profile</h2>
@@ -175,7 +179,7 @@
         </div>
 
         <div class="flex gap-10">
-            <div class="image-employer border h-12 w-12 rounded-full bg-black"> </div>
+            <div class="image-employer border h-12 w-12 rounded-full"> </div>
             <div class="flex flex-col">
                 <p><strong>Name:</strong> <span id="view-name"></span></p>
                 <p><strong>Role:</strong> <span id="view-role" class="text-blue-600"></span></p>
@@ -191,7 +195,18 @@
 
     </div>
 </div>
+<div id="assign-cardes" class="fixed inset-0 bg-black hidden bg-opacity-40 flex items-center justify-center border border-gray-200 ">
+        <div class="bg-white p-6 rounded-xl  w-[450px] max-h-[70vh]">
+        <div class="flex justify-between items-center">
+            <h2 class="text-xl font-bold mb-4 text-blue-600">Select Worker to Assign</h2>
+            <button id="closeModal-Assign"> <i class="fa-solid fa-x"></i> </button>
+        </div>
+        <div id="assign-list" class="space-y-3 mt-4">
+            
+        </div>
 
+</div>
+</div>
 
 
 <script src="./assets/scripts/script.js"></script>
