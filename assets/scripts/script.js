@@ -3,6 +3,7 @@
     const closeModalBtn = document.querySelectorAll(".closeModal");
     const addBtn = document.getElementById("add");
     const addExpBtn = document.getElementById("add-ex")
+    const delAllBtn = document.getElementById("dell-emp")
 
     openModalBtn.onclick = () => {
         modal.classList.remove("hidden");
@@ -11,8 +12,13 @@
     closeModalBtn.forEach(btn =>{
         btn.addEventListener("click",()=>{
             modal.classList.add("hidden");
+            document.getElementById("addWorkerForm").reset();
         })
     })
+    delAllBtn.onclick = () =>{
+        localStorage.clear();
+        window.location.reload()
+    }
 // ==============Validaation===========
 const errorsSpan =document.querySelectorAll(".form-error") ;
 // dynamique form
@@ -106,7 +112,7 @@ addExpBtn.addEventListener("click",function(){
   const dForme = document.getElementById("new-dynamique-form");
   
   const newForme = document.createElement("div");
-  newForme.className="bg-gray-100 w-full max-h-full border-black rounded-xl"
+  newForme.className="bg-gray-100 w-full max-h-full border-black rounded-xl ex-form"
   newForme.innerHTML = `<div>
                         <label>Company :</label>
                         <input type="text" class="company" >
@@ -128,11 +134,20 @@ addExpBtn.addEventListener("click",function(){
                         <input type="date" class="date-end form-error-ex">
                         <span class="form-error-ex text-xs"></span>
                         
-                    </div>`;
+                    </div>
+                    
+                    <div><button type="button" class="del-ex w-auto bg-red-600 text-white py-3 rounded-xl mt-2"> Delete Experience</button></div>`;
    dForme.appendChild(newForme);  
+ 
 
 })
+  const delExBtn = document.querySelectorAll(".del-ex")
 
+    // delExBtn.addEventListener("click",function(){
+    //     dForme.classList.add("hidden");
+    //     dForme.reset();
+
+    // })
 // ===================localStorage=============
 
 
@@ -246,7 +261,7 @@ function loadWorkers(room) {
         if (!roomDiv) return;
 
         const miniCard = document.createElement("div");
-        miniCard.className = "flex items-center gap-2 bg-gray-200 p-1 rounded my-1 text-xs";
+        miniCard.className = "miniCard flex items-center gap-2 bg-gray-200 p-1 rounded my-1 text-xs";
         miniCard.innerHTML = `
             <img src="${emp.img}" alt="${emp.name}" class="w-12 h-12 rounded-full object-cover">
             <div class="flex flex-col">
@@ -261,6 +276,7 @@ function loadWorkers(room) {
         `;
 
         roomDiv.appendChild(miniCard);
+        checkRoomStatuses();
 
         // Make employe assigned and save to localStorage
         emp.assignedRoom = room;
@@ -277,6 +293,7 @@ function loadWorkers(room) {
             emp.assignedRoom = null;
             saveEmployeesToLocalStorage(allEmployees);
             backEmployeeToSidebar(emp);
+            checkRoomStatuses();
         });
 
         // Close modal
@@ -427,4 +444,21 @@ function backEmployeeToSidebar(emp) {
 
     stafCards.appendChild(card);
 }
+
+function checkRoomStatuses() {
+    const rooms = document.querySelectorAll(".rooms");
+
+    rooms.forEach(room => {
+        // Count employees inside the room
+        const hasEmployees = room.querySelectorAll(".miniCard").length > 0;
+
+        if (!hasEmployees) {
+            room.classList.add("room-empty");
+        } else {
+            room.classList.remove("room-empty");
+        }
+    });
+}
+window.addEventListener("DOMContentLoaded", checkRoomStatuses);
+
 
