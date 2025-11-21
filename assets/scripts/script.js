@@ -135,7 +135,7 @@ addExpBtn.addEventListener("click",function(){
                         <span class="form-error-ex text-xs"></span>
                         
                     </div>
-                    
+
                     <div><button type="button" class="del-ex w-auto bg-red-600 text-white py-3 rounded-xl mt-2"> Delete Experience</button></div>`;
    dForme.appendChild(newForme);  
  
