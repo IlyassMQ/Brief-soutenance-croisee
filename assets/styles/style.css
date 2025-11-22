@@ -96,7 +96,7 @@ input{
     .image {
         width: 70%; 
         height: 100%;
-        background-image: url("/assets/images/plan-69159a65c5684763515973-Vertical.jpg");
+        background-image: url("../images/plan-69159a65c5684763515973-Vertical.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -165,7 +165,7 @@ input{
 
     .image {
         width: 100%;
-        background-image: url("/assets/images/plan-69159a65c5684763515973-Vertical.jpg");
+        background-image: url("../images/plan-69159a65c5684763515973-Vertical.jpg");
         background-size: cover;
         background-position: top center;
         background-repeat: no-repeat;
