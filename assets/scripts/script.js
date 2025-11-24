@@ -5,6 +5,12 @@
     const addExpBtn = document.getElementById("add-ex")
     const delAllBtn = document.getElementById("dell-emp")
 
+    window.addEventListener("DOMContentLoaded", checkRoomStatuses);
+    window.addEventListener("DOMContentLoaded", restoreAssignedEmployees);
+    window.addEventListener("DOMContentLoaded", displayWorkersInSidebar);
+    
+
+
     openModalBtn.onclick = () => {
         modal.classList.remove("hidden");
     };
@@ -25,15 +31,13 @@ const errorsSpan =document.querySelectorAll(".form-error") ;
 const company = document.querySelector(".company").value.trim();
 const role = document.querySelector(".role").value.trim();
 
-
-
 function Validation(){
 const name = document.getElementById("name").value.trim();
 const email = document.getElementById("email").value.trim();
 const phone = document.getElementById("phone").value.trim();
 // REEGEX
 const nameRegex = /^[A-Za-z\s]{3,}$/;
-const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,}$/;
 const phoneRegex = /^\+212[5-7][0-9]{8}$/
 let isValid = true;
 errorsSpan.forEach(span => (span.textContent = ""));
@@ -51,7 +55,7 @@ errorsSpan.forEach(span => (span.textContent = ""));
     errorsSpan[1].classList.add("text-red-500");
     isValid = false;
   } else if (!emailRegex.test(email)) {
-    errorsSpan[1].textContent = "Please enter a valid email, e.g., example@mail.com";
+    errorsSpan[1].textContent = "Please enter a valid email, e.g., example@gmail.com";
     errorsSpan[1].classList.add("text-red-500");
     isValid = false;
   }
@@ -138,16 +142,14 @@ addExpBtn.addEventListener("click",function(){
 
                     <div><button type="button" class="del-ex w-auto bg-red-600 text-white py-3 rounded-xl mt-2"> Delete Experience</button></div>`;
    dForme.appendChild(newForme);  
- 
+
+  const deleteExBtn = newForme.querySelector(".del-ex");
+
+    deleteExBtn.addEventListener("click", function () {
+        newForme.remove(); // delete only this block
+    });
 
 })
-  const delExBtn = document.querySelectorAll(".del-ex")
-
-    // delExBtn.addEventListener("click",function(){
-    //     dForme.classList.add("hidden");
-    //     dForme.reset();
-
-    // })
 // ===================localStorage=============
 
 
@@ -183,6 +185,7 @@ function toLocalStorage() {
         phone: phone,
         role: role,
         img:photo,
+        assignedRoom: null,
         experiences: experiencesArr
     };
         // Get old employees
@@ -318,7 +321,7 @@ function displayWorkersInSidebar() {
     const allEmployees = JSON.parse(localStorage.getItem("employees") || "[]");
     for (let i = 0; i < allEmployees.length; i++) {
         const emp = allEmployees[i];
-
+        if (emp.assignedRoom) continue; //show the employer only if he is not assigned
         const card = document.createElement("div");
         card.className = "flex items-center border border-gray-200 rounded-xl p-4 bg-white w-[250px]";
         card.dataset.id = emp.id;
@@ -331,7 +334,6 @@ function displayWorkersInSidebar() {
                 <p class="font-semibold text-gray-800">${emp.name}</p>
                 <p class="text-gray-500 text-sm">${emp.role}</p>
             </div>
-            <button class="ml-7 text-yellow-500 text-sm">Edit</button>
         `;
 
         // click open modal worker info
@@ -365,7 +367,7 @@ function displayWorkersInSidebar() {
     }
 }
 
-window.addEventListener("DOMContentLoaded", displayWorkersInSidebar);
+
 
 
 
@@ -415,7 +417,6 @@ function backEmployeeToSidebar(emp) {
             <p class="font-semibold text-gray-800">${emp.name}</p>
             <p class="text-gray-500 text-sm">${emp.role}</p>
         </div>
-        <button class="ml-7 text-yellow-500 text-sm">Edit</button>
     `;
 
     card.addEventListener("click", function() {
@@ -445,10 +446,55 @@ function backEmployeeToSidebar(emp) {
     stafCards.appendChild(card);
 }
 
+function restoreAssignedEmployees() {
+    const allEmployees = JSON.parse(localStorage.getItem("employees") || "[]");
+
+    allEmployees.forEach(emp => {
+        if (!emp.assignedRoom) return;
+
+        const roomDiv = document.querySelector(`[data-room="${emp.assignedRoom}"]`);
+        if (!roomDiv) return;
+
+        
+        const miniCard = document.createElement("div");
+        miniCard.className = "miniCard flex items-center gap-2 bg-gray-200 p-1 rounded my-1 text-xs";
+        miniCard.innerHTML = `
+            <img src="${emp.img}" alt="${emp.name}" class="w-12 h-12 rounded-full object-cover">
+            <div class="flex flex-col">
+                <strong class="text-sm">${emp.name}</strong>
+                <span class="text-xs text-gray-600">${emp.role}</span>
+            </div>
+            <button class="removeBtn bg-red-500 h-4 w-4 rounded">
+                <i class="fa-solid fa-x" style="color:#fff;"></i>
+            </button>
+        `;
+
+        roomDiv.appendChild(miniCard);
+
+        // remove button
+        const removeBtn = miniCard.querySelector(".removeBtn");
+        removeBtn.addEventListener("click", function() {
+            miniCard.remove();
+            emp.assignedRoom = null;
+            saveEmployeesToLocalStorage(allEmployees);
+            backEmployeeToSidebar(emp);
+            checkRoomStatuses();
+        });
+    });
+
+    checkRoomStatuses();
+}
+
+
+
 function checkRoomStatuses() {
     const rooms = document.querySelectorAll(".rooms");
 
     rooms.forEach(room => {
+        const roomName = room.dataset.room;
+        if (roomName === "Conference Room" || roomName === "Staff Room") {
+            return;
+        }
         // Count employees inside the room
         const hasEmployees = room.querySelectorAll(".miniCard").length > 0;
 
@@ -459,6 +505,6 @@ function checkRoomStatuses() {
         }
     });
 }
-window.addEventListener("DOMContentLoaded", checkRoomStatuses);
+
 
 
