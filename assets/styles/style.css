@@ -41,11 +41,13 @@ input{
 
 }
 #div-1{grid-area: div1;}
+#div-2{grid-area: div2;}
 #div-3{grid-area: div3;}
 #div-4{grid-area: div4;}
 #div-5{grid-area: div5;}
 #div-6{grid-area: div6;}
 #div-7{grid-area: div7;}
+#div-8{grid-area: div8;}
 .rooms{
     display: flex;
     flex-direction: column;
@@ -100,28 +102,22 @@ input{
     }
 
     .image {
-        width: 70%;
+        all: unset;
+        width: 70%; 
         height: 100%;
-        background-image: url("../images/plan-69159a65c5684763515973-Vertical.jpg");
+        background-image: url("/assets/images/plan-69159a65c5684763515973-Vertical.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
         display: grid;
-
-        grid-template-columns:
-            minmax(80px, 1.4fr)
-            minmax(80px, 1.4fr)
-            minmax(80px, 1.4fr)
-            minmax(80px, 1.4fr);
-        grid-template-rows: repeat(5, minmax(80px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         grid-template-areas:
-            "div5 div5 div5 div1"
-            "div5 div5 div5 div1"
-            ". . . ."
-            "div6 . . div3"
-            "div7 . . div4";
+            "div5 div5 div1"
+            "div5 div5 div1"
+            "div2 div2 div2"
+            "div6 div8 div3"
+            "div7 div8 div4";
     }
-
 
     .rooms {
         flex-direction: column;
@@ -178,20 +174,19 @@ input{
 
     .image {
         width: 100%;
-        background-image: url("../images/plan-69159a65c5684763515973-Vertical.jpg");
+        background-image: url("/assets/images/plan-69159a65c5684763515973-Vertical.jpg");
         background-size: cover;
         background-position: top center;
         background-repeat: no-repeat;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3,1fr);
         grid-template-areas:
             "div5 div5 div1"
             "div5 div5 div1"
             "div2 div2 div2"
-            "div2 div2 div2"
             "div6 div8 div3"
             "div7 div8 div4";
-        
+        grid-template-rows: repeat(5,1fr);
     }
 
     .rooms h3 {
