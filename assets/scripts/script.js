@@ -105,7 +105,7 @@ const closeViewBtn = document.getElementById("closeView");
 addBtn.addEventListener("click", function(e){
     e.preventDefault();
     if (!Validation()) return;
-    const id = toLocalStorage();
+    id = toLocalStorage();
     displayWorkersInSidebar();
     modal.classList.add("hidden");
     document.getElementById("addWorkerForm").reset();
@@ -323,7 +323,7 @@ function displayWorkersInSidebar() {
         const emp = allEmployees[i];
         if (emp.assignedRoom) continue; //show the employer only if he is not assigned
         const card = document.createElement("div");
-        card.className = "flex items-center border border-gray-200 rounded-xl p-4 bg-white w-[250px]";
+        card.className = "flex items-center border border-gray-200 rounded-xl p-4 bg-white w-[250px] card";
         card.dataset.id = emp.id;
 
         card.innerHTML = `
@@ -406,7 +406,7 @@ function backEmployeeToSidebar(emp) {
     if (document.querySelector(`div[data-id="${emp.id}"]`)) return;
 
     const card = document.createElement("div");
-    card.className = "flex items-center border border-gray-200 rounded-xl p-4 bg-white w-[250px]";
+    card.className = "flex items-center border border-gray-200 rounded-xl p-4 bg-white w-[250px] card";
     card.dataset.id = emp.id;
 
     card.innerHTML = `
